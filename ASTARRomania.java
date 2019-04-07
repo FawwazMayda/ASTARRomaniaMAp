@@ -16,46 +16,6 @@ public class ASTARRomania {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Node A = new Node("A",10);
-        Node B = new Node("B",8);
-        Node C = new Node("C",5);
-        Node D = new Node("D",7);
-        Node E = new Node("E",3);
-        Node F = new Node("F",6);
-        Node G = new Node("G",5);
-        Node H = new Node("H",3);
-        Node I = new Node("I",1);
-        Node J = new Node("J",0);
-        Graph contoh = new Graph();
-        contoh.addNode(A);
-        contoh.addNode(B);
-        contoh.addNode(C);
-        contoh.addNode(D);
-        contoh.addNode(E);
-        contoh.addNode(F);
-        contoh.addNode(G);
-        contoh.addNode(H);
-        contoh.addNode(I);
-        contoh.addNode(J);
-        
-        contoh.setEdge(A, B, 6);
-        contoh.setEdge(A, F, 3);
-        contoh.setEdge(B, C, 3);
-        contoh.setEdge(B, D, 2);
-        contoh.setEdge(C, E, 5);
-        contoh.setEdge(E, I, 5);
-        contoh.setEdge(E, J, 5);
-        contoh.setEdge(J, I, 3);
-        contoh.setEdge(G, I, 3);
-        contoh.setEdge(H,I,2);
-        contoh.setEdge(F, H, 7);
-        contoh.setEdge(F, G, 1);
-        
-        contoh.setStart(A);
-        contoh.setGoal(J);
-        
-        contoh.aStar();
-        contoh.sol_path();
         Graph romania =new Graph();
         Node Arad = new Node("Arad",366);
         romania.addNode(Arad);
@@ -128,7 +88,11 @@ public class ASTARRomania {
         romania.showAllNode();
         System.out.println("ASTAR 1");
         romania.aStar();
+        //System.out.println("UCS");
+        //romania.UCS();
         romania.sol_path();
+        
+        
         
     }
     

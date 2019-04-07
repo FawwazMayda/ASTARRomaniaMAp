@@ -85,7 +85,7 @@ public class Graph {
         System.out.println("Path Taken:");
         while(!open.isEmpty()){
             current = this.selectBestNode(open);
-            System.out.print(current.label+" -> ");
+             System.out.print(current.label+"["+ current.f()+"]"+" -> ");
             if(current.isEqual(this.end)){
                 break;
             }
@@ -104,7 +104,7 @@ public class Graph {
                 } else if(tentative_distSource >= neighbor.distFromSource) {
                     continue;
                 }
-                
+                // Apabila tentative_distSource < neighbor.distFromSource
                 neighbor.distFromSource = tentative_distSource;
                 neighbor.parent =  current;
             }
@@ -135,6 +135,55 @@ public class Graph {
         }
         System.out.println(path.get(path.size()-1).label);
         System.out.println("Path Cost: "+sum);
+    }
+    
+    public Node selectLowGN(ArrayList<Node> open){
+        Node best = open.get(0);
+        for(Node n: open){
+            if(n.distFromSource < best.distFromSource){
+                best = n;
+            }
+        }
+        return best;
+    }
+    
+    public void UCS(){
+        // open node yg belum dikunjungi
+        ArrayList<Node> open = new ArrayList<>();
+        // node yg telah dikunjungi
+        ArrayList<Node> close = new ArrayList<>();
+        Node current;
+        int currentIndex;
+        int neighborIndex;
+        int newDistSource;
+        open.add(this.start);
+        System.out.println("Path Taken: ");
+        while(!open.isEmpty()){
+            current = this.selectLowGN(open);
+            System.out.print(current.label+"["+ current.distFromSource+"]"+" -> ");
+            if(current.isEqual(this.end)){
+                break;
+            }
+            open.remove(current);
+            close.add(current);
+            currentIndex = this.vertices.indexOf(current);
+            for (Node neighbor : this.getAllNeighbor(current)){
+                if(close.contains(neighbor)){
+                    continue;
+                }
+                neighborIndex = this.vertices.indexOf(neighbor);
+                newDistSource = current.distFromSource + this.adj_mat[currentIndex][neighborIndex];
+               if(!open.contains(neighbor)){
+                   open.add(neighbor);
+               } else if(newDistSource > neighbor.distFromSource){
+                   continue;
+               }
+               
+               neighbor.distFromSource = newDistSource;
+               neighbor.parent = current;
+            }
+        }
+        System.out.println("Complete");
     }
     
     

@@ -13,16 +13,15 @@ public class Node {
     public String label;
     public int heuristic;
     public int distFromSource =0 ;
-    public boolean visited;
     public Node parent = null;
     
     Node(String label,int h){
         this.label=label;
         this.heuristic=h;
-        this.visited = false;
     }
     
     public int f(){
+        // f(n) = g(n) + h(n)
         return this.distFromSource + this.heuristic;
     }
     
